@@ -17,8 +17,9 @@ export const HeroClassSelection = () => {
   const [selections, setSelections] = React.useState(defaultState);
 
   const handleSelect = (e) => {
-    const { name, value } = e.target;
-    setSelections((prev) => ({ ...prev, [name]: !value }));
+    const { name, checked } = e.target;
+    console.log({ name, checked });
+    setSelections((prev) => ({ ...prev, [name]: checked }));
   };
 
   const handleSubmit = (e) => {
@@ -30,9 +31,9 @@ export const HeroClassSelection = () => {
       }
     });
 
-    const selectedHero = selectRandomElement(availableHeroes)
-
-    alert(`You got ${selectedHero.name}! Go kick some ass:)`)
+    const selectedHero = selectRandomElement(availableHeroes);
+    if (!selectedHero) return alert("B*tch, select a class first!");
+    alert(`You got ${selectedHero.name}! Go kick some ass:)`);
   };
 
   return (
